@@ -7,7 +7,7 @@ alias ~="cd ~" # `cd` is probably faster to type though
 alias -- -="cd -"
 
 # programs
-alias st='open -a "Sublime Text 2"'
+# alias st='open -a "Sublime Text 2"'
 # also/or do this:
 # ln -s "/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl" ~/bin/subl
 alias preview="open -a '$PREVIEW'"
@@ -27,9 +27,11 @@ alias gpr="~/code/gpr $1"
 
 # general shortcuts
 alias btm="cd /Volumes/Main/_Clients/BTM/_sites"
-alias gh="open -a google\ chrome 'http://github.com/seafarer'"
+alias github="open -a google\ chrome 'http://github.com/seafarer'"
+alias gh="open -a google\ chrome \`git remote -v | grep github.com | grep fetch | head -1 | field 2 | sed 's/git:/http:/g'\`"
 alias bl="open -a google\ chrome 'http://browserling.com'"
 alias www="cd /Volumes/Main/www"
+alias clients="cd /Volumes/Main/_Clients"
 
 # be nice
 alias please=sudo
@@ -91,7 +93,7 @@ alias localip="ipconfig getifaddr en1"
 alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
 
 # Enhanced WHOIS lookups
-alias whois="whois -h whois-servers.net"
+# alias whois="whois -h whois-servers.net"
 
 # Flush Directory Service cache
 alias flush="dscacheutil -flushcache"
@@ -124,7 +126,7 @@ alias cleanup="find . -name '*.DS_Store' -type f -ls -delete"
 # Shortcuts
 alias g="git"
 alias v="vim"
-
+alias becw="bundle exec compass watch"
 # File size
 alias fs="stat -f \"%z bytes\""
 
@@ -141,9 +143,6 @@ alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && k
 # Run DropboxUploader if you have it installed
 alias dropbox="~/code/Dropbox-Uploader/dropbox_uploader.sh $1"
 
-# PlistBuddy alias, because sometimes `defaults` just doesn’t cut it
-alias plistbuddy="/usr/libexec/PlistBuddy"
-
 # One of @janmoesen’s ProTip™s
 for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
 	alias "$method"="lwp-request -m '$method'"
@@ -151,10 +150,6 @@ done
 
 #DRUSH stuff
 alias dr="drush"
-alias cc="drush cc all"
-alias drfra="drush fra -y"
-
-# Stuff I never really use but cannot delete either because of http://xkcd.com/530/
-alias stfu="osascript -e 'set volume output muted true'"
-alias pumpitup="osascript -e 'set volume 10'"
-alias hax="growlnotify -a 'Activity Monitor' 'System error' -m 'WTF R U DOIN'"
+alias dcc="drush cc all"
+alias dfr="drush fra -y"
+alias drfu="drush fu --version-increment -y"
